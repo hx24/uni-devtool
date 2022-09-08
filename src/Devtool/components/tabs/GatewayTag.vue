@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import storeMixin from '../mixins/storeMixin'
+import storeMixin from '../../mixins/storeMixin'
 
 export default {
   name: 'mp-dev-tool-gateway-tag',

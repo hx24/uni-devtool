@@ -9,4 +9,4 @@ const recorder = Vue.prototype.$recorder = new Recorder()
 rewriteRequest(recorder)
 Recorder.clearStatic()
 
-console.log('WyMpDevtool初始化成功')
+console.log('uni-devtool初始化成功')

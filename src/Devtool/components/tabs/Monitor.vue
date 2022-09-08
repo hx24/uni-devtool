@@ -53,7 +53,7 @@
 
 <script>
 import { formatMonitor } from './helper'
-import { getTime } from '../util/date'
+import { getTime } from '../../util/date'
 
 export default {
   name: 'mp-devtool-monitor',

@@ -13,8 +13,8 @@
       W
     </view>
 
-    <wy-devtool-popup v-model="showPopup" >
-      <div class="wy-mp-devtool__wrapper">
+    <devtool-popup v-model="showPopup">
+      <div class="uni-devtool__wrapper">
         <div class="menus__container">
           <ul class="menus">
             <li v-for="menu in menus" :key="menu.key" :class="['meun-item', { actived: menu.key === curMenu.key }]" @click="handleMenuClick(menu)">{{ menu.name }}</li>
@@ -22,51 +22,47 @@
         </div>
         <div class="main__container">
           <div v-show="curMenu.key === 'Monitor'">
-            <monitor ></monitor>
+            <monitor></monitor>
           </div>
           <div v-show="curMenu.key === 'Page'">
-            <page-info ></page-info></div>
+            <page-info></page-info>
+          </div>
           <div v-show="curMenu.key === 'Network'">
-            <network ></network>
+            <network></network>
           </div>
           <div v-show="curMenu.key === 'GatewayTag'">
-            <gateway-tag ></gateway-tag>
+            <gateway-tag></gateway-tag>
           </div>
           <div v-show="curMenu.key === 'GoH5'">
-            <go-h5 ></go-h5>
+            <go-h5></go-h5>
           </div>
-          <!-- <monitor v-show="curMenu.key === 'Monitor'"></monitor> -->
-          <!-- <page-info v-show="curMenu.key === 'Page'"></page-info> -->
-          <!-- <network v-show="curMenu.key === 'Network'"></network> -->
-          <!-- <gateway-tag v-show="curMenu.key === 'GatewayTag'"></gateway-tag> -->
-          <!-- <go-h5 v-show="curMenu.key === 'GoH5'"></go-h5> -->
         </div>
       </div>
-    </wy-devtool-popup>
+    </devtool-popup>
   </div>
 </template>
 <script>
 import menus from './menus.js'
 import { ElDrag } from './util/index.js'
 
-import WyDevtoolPopup from './ui/wy-devtool-popup.vue'
-import Monitor from './components/Monitor.vue'
-import PageInfo from './components/PageInfo.vue'
-import Network from './components/Network.vue'
-import GatewayTag from './components/GatewayTag.vue'
-import GoH5 from './components/GoH5.vue'
+import DevtoolPopup from './components/devtool-popup.vue'
+import Monitor from './components/tabs/Monitor.vue'
+import PageInfo from './components/tabs/PageInfo.vue'
+import Network from './components/tabs/Network.vue'
+import GatewayTag from './components/tabs/GatewayTag.vue'
+import GoH5 from './components/tabs/GoH5.vue'
 
 export default {
-  name: 'wy-mp-devtool',
+  name: 'uni-devtool',
   components: {
-    WyDevtoolPopup,
+    DevtoolPopup,
     Monitor,
     PageInfo,
     Network,
     GatewayTag,
     GoH5
   },
-  data () {
+  data() {
     return {
       menus: menus,
       showPopup: false,
@@ -75,16 +71,16 @@ export default {
     }
   },
   methods: {
-    handleMenuClick (menu = {}) {
+    handleMenuClick(menu = {}) {
       this.curMenu = menu
     }
   },
-  created () {
+  created() {
     const query = uni.createSelectorQuery().in(this)
     const menuRef = query.select('#menu')
     this.drag = new ElDrag(menuRef)
   },
-  destroyed () {
+  destroyed() {
     this.drag.destroy()
   }
 }
@@ -105,7 +101,7 @@ export default {
   background: rgba(0, 0, 0, 0.3);
   user-select: none;
 }
-.wy-mp-devtool__wrapper {
+.uni-devtool__wrapper {
   display: flex;
   flex-direction: column;
   color: #000;
