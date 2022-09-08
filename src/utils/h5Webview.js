@@ -10,7 +10,6 @@ const addH5Webview = function (source, resourcePath, config) {
         navigationBarTitleText: '加载中',
       },
     })
-    console.log('json', json)
     source = JSON.stringify(json)
   }
   return source
