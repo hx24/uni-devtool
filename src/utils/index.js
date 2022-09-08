@@ -4,5 +4,6 @@ module.exports = {
   ...require('./vue'),
   ...require('./script'),
   ...require('./options'),
-  ...require('./tools')
+  ...require('./tools'),
+  ...require('./h5Webview'),
 }

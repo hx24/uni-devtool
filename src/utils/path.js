@@ -52,7 +52,7 @@ const formatPageJson = (function () {
         })
       }
     } catch (error) {
-      console.error("wy-mp-devtool: 解析page.json错误", error)
+      console.error("uni-devtool: 解析page.json错误", error)
     }
 
     return allPagePaths

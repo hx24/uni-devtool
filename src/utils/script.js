@@ -27,7 +27,7 @@ function injectCodeAfterLastImportDeclaration(source, code) {
     .generate(sourceAst, {
       indent: "  ",
     })
-    .replace(/;/g, "") + '\n' // TODO 换个支持不带分号的生成器
+    .replace(/;/g, "") + '\n'
   return newSource
 }
 
@@ -55,8 +55,8 @@ function getInjectCode(scripts, components) {
 
 
   const code = `
-    ${scriptCode}
-    ${registerComponentCode}`
+  ${scriptCode}
+  ${registerComponentCode}`
   return code
 }
 

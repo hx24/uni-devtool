@@ -1,6 +1,6 @@
-const compiler = require("@vue/compiler-sfc")
-const path = require("path")
-const { pathRulesTest } = require("./path")
+// const compiler = require("@vue/compiler-sfc")
+const path = require('path')
+const { pathRulesTest } = require('./path')
 
 /**
  * 在vue文件的template中第一个非template节点下插入组件的调用
@@ -9,30 +9,32 @@ const { pathRulesTest } = require("./path")
  * @param {string} components[].name 组件名称
  */
 function inject(source, components) {
-
   let injectTags = components.reduce((tags, curr) => {
-    tags += `<${curr.name}></${curr.name}>` // TODO 换成自闭合标签
-    return tags
-  }, "")
-
-  const { descriptor } = compiler.parse(source)
-  if (descriptor.template) {
-    // TODO 暂未考虑没有只有一个自闭和标签的情况
-    // 如:  <template><img/></template>
-    const matchTags = source.match(/<[^\/>]+>/g)
-    const tag =
-      matchTags &&
-      matchTags.find(
-        (item) =>
-          !item.includes("<template") &&
-          !item.includes("<script") &&
-          !item.includes("<style") &&
-          !item.includes("<!") // 注释也是标签
-      )
-    if (tag) {
-      source = source.replace(tag, `$&${injectTags}`)
+    const { name, inject = true } = curr
+    if (inject) {
+      tags += `<${name} />`
     }
+    return tags
+  }, '')
+
+  // const { descriptor } = compiler.parse(source)
+  // if (descriptor.template) {
+  // TODO 暂未考虑没有只有一个自闭和标签的情况
+  // 如:  <template><img/></template>
+  const matchTags = source.match(/<[^\/>]+>/g)
+  const tag =
+    matchTags &&
+    matchTags.find(
+      (item) =>
+        !item.includes('<template') &&
+        !item.includes('<script') &&
+        !item.includes('<style') &&
+        !item.includes('<!'), // 注释也是标签
+    )
+  if (tag) {
+    source = source.replace(tag, `$&${injectTags}`)
   }
+  // }
   return source
 }
 
@@ -49,9 +51,12 @@ function injectComponents(source, resourcePath, config) {
   const { components, injectComponentRule, pagesJsonPath } = config
 
   // 插入组件调用
-  const isSFC = path.extname(resourcePath).includes("vue")
-  const pathMath = pathRulesTest(resourcePath, { regRules: injectComponentRule, pagesJsonPath })
-  if (isSFC && pathMath) {
+  const isSFC = path.extname(resourcePath).includes('vue')
+  const pathMatch = pathRulesTest(resourcePath, {
+    regRules: injectComponentRule,
+    pagesJsonPath,
+  })
+  if (isSFC && pathMatch) {
     source = inject(source, components)
   }
   return source

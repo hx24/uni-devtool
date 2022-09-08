@@ -7,24 +7,26 @@
     <div class="line"></div>
     <div class="input-direct">
       <div class="title">输入H5地址打开</div>
-      <textarea v-model="url" class="url-input" type="text"/>
+      <textarea v-model="url" class="url-input" type="text" />
       <button class="confirm-url" size="mini" type="primary" @click="handleConfirmUrl">确定</button>
     </div>
   </section>
 </template>
 
 <script>
+import { defaultConfig } from '../../../default.config'
+
 export default {
   name: 'mp-dev-tool-go-h5',
   components: {},
   props: {},
-  data () {
+  data() {
     return {
       url: ''
     }
   },
   methods: {
-    handleConfirmUrl () {
+    handleConfirmUrl() {
       if (!this.url) {
         uni.showToast({
           title: '请输入url或扫描二维码',
@@ -35,7 +37,7 @@ export default {
         this.goH5(this.url)
       }
     },
-    scan () {
+    scan() {
       uni.scanCode({
         success: (result) => {
           const url = result?.result
@@ -51,15 +53,15 @@ export default {
         }
       })
     },
-    goH5 (url) {
-      // TODO 暴露设置，兼容其他小程序
+    goH5(url) {
       uni.showToast({
         title: '正在打开...',
         duration: 1000,
         icon: 'none'
       })
+      const path = defaultConfig.h5WebviewPath
       uni.navigateTo({
-        url: `/pages/h5/index?url=${encodeURIComponent(url.trim())}`
+        url: `/${path}?url=${encodeURIComponent(url.trim())}`
       })
     }
   },
