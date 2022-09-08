@@ -1,10 +1,5 @@
 export default [
   {
-    icon: 'https://kano.guahao.cn/eSd542406321',
-    key: 'Monitor',
-    name: '埋点查看'
-  },
-  {
     key: 'Network',
     name: 'Network'
   },
@@ -17,8 +12,4 @@ export default [
     key: 'Page',
     name: '页面信息'
   },
-  {
-    key: 'GatewayTag',
-    name: '网关隔离'
-  }
 ]

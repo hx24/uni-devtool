@@ -21,17 +21,11 @@
           </ul>
         </div>
         <div class="main__container">
-          <div v-show="curMenu.key === 'Monitor'">
-            <monitor></monitor>
-          </div>
           <div v-show="curMenu.key === 'Page'">
             <page-info></page-info>
           </div>
           <div v-show="curMenu.key === 'Network'">
             <network></network>
-          </div>
-          <div v-show="curMenu.key === 'GatewayTag'">
-            <gateway-tag></gateway-tag>
           </div>
           <div v-show="curMenu.key === 'GoH5'">
             <go-h5></go-h5>
@@ -46,20 +40,16 @@ import menus from './menus.js'
 import { ElDrag } from './util/index.js'
 
 import DevtoolPopup from './components/devtool-popup.vue'
-import Monitor from './components/tabs/Monitor.vue'
 import PageInfo from './components/tabs/PageInfo.vue'
 import Network from './components/tabs/Network.vue'
-import GatewayTag from './components/tabs/GatewayTag.vue'
 import GoH5 from './components/tabs/GoH5.vue'
 
 export default {
   name: 'uni-devtool',
   components: {
     DevtoolPopup,
-    Monitor,
     PageInfo,
     Network,
-    GatewayTag,
     GoH5
   },
   data() {

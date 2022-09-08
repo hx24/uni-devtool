@@ -7,6 +7,13 @@
       </div>
       <div class="row-value">{{ curUrl }}</div>
     </div>
+    <div class="row">
+      <div class="row-label">
+        <div class="label-text">页面参数：</div>
+        <div class="label-button" @click="copy(params)">复制</div>
+      </div>
+      <div class="row-value">{{ params }}</div>
+    </div>
   </section>
 </template>
 
@@ -17,7 +24,8 @@ export default {
   props: {},
   data () {
     return {
-      curUrl: ''
+      curUrl: '',
+      params: {}
     }
   },
   mounted () {
@@ -28,6 +36,7 @@ export default {
     const fullPath = page.$page?.fullPath
 
     this.curUrl = fullPath || route
+    this.params = Object.keys(page.options).length ? JSON.stringify(page.options) : '无'
   },
   created () {},
   methods: {
