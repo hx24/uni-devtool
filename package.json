@@ -3,8 +3,18 @@
   "version": "1.0.0",
   "description": "uni-app调试工具",
   "main": "src/index.js",
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "uni-app",
+    "uni-app调试工具",
+    "小程序调试工具",
+    "mini app"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hx24/uni-devtool.git"
+  },
+  "homepage": "https://github.com/hx24/uni-devtool",
+  "author": "huangxin",
   "license": "ISC",
   "dependencies": {
     "@vue/compiler-sfc": "3.2.39",
