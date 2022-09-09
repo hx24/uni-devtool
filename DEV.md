@@ -20,13 +20,13 @@ chainWebpack: (config) => {
   config.resolve.symlinks(false) // 解决软链问题
   // 以下为常规配置
   config.module
-    .rule('mp-devtool') // 链式操作用来分组的名字
-    .test(/\.(vue)|(js)$/)
+    .rule('uni-devtool') // 链式操作用来分组的名字
+    .test(/\.(vue)|(js)|(json)$/)
     .pre()
     .exclude.add(/node_modules/)
     .end()
-    .use('@weiyi/mp-devtool-loader')
-    .loader('@weiyi/mp-devtool-loader')
+    .use('uni-devtool')
+    .loader('uni-devtool')
     .options({
       devtool: true // 控制devtool只在非线上环境的注入，根据项目实际情况配置
     })

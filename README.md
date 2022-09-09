@@ -30,7 +30,7 @@ module.exports = {
   chainWebpack: (config) => {
     config.module
       .rule('uni-devtool') // 链式操作用来分组的名字
-      .test(/\.(vue)|(js)$/)
+      .test(/\.(vue)|(js)|(json)$/)
       .pre()
       .exclude.add(/node_modules/)
       .end()
