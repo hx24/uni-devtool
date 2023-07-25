@@ -5,8 +5,7 @@
 
 ![图片](https://qnm.hunliji.com/FgbQbE_gbcuK_wps-JfyE5KwMhIB)
 
-<p align=center><img width="300" src="https://qnm.hunliji.com/FpH5sTmeMbSaYxeT-EAQAlGVJlco
-" alt="功能预览动图"  /></p>
+<p align=center><img width="300" src="https://qnm.hunliji.com/FpH5sTmeMbSaYxeT-EAQAlGVJlco" alt="功能预览动图"  /></p>
 
 ## 支持功能
 - network查看
