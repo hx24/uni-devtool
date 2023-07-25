@@ -1,10 +1,23 @@
 import Vue from 'vue'
 import { REQUESTS_STORAGE_KEY, RESPONSES_STORAGE_KEY } from './constant'
+const UPDATE = 'update'
 
 export default class Recorder {
   constructor () {
     this.checkStorageSize()
     this.bus = new Vue()
+  }
+
+  onUpdate(handler) {
+    this.bus.$on(UPDATE, handler)
+  }
+  
+  offUpdate(handler) {
+    this.bus.$off(UPDATE, handler)
+  }
+
+  emitUpdate(records) {
+    this.bus.$emit(UPDATE, records)
   }
 
   addRecord (options) {
@@ -16,7 +29,7 @@ export default class Recorder {
       //   records.splice(100) // 最多保留100数据
       // }
       uni.setStorageSync(REQUESTS_STORAGE_KEY, records)
-      this.bus.$emit('update', records)
+      this.emitUpdate(records)
       return record.id
     } catch (error) {
       console.error(error)
@@ -33,7 +46,7 @@ export default class Recorder {
           time: now - record.startTime
         })
         uni.setStorageSync(REQUESTS_STORAGE_KEY, records)
-        this.bus.$emit('update', records)
+        this.emitUpdate(records)
       }
     } catch (error) {
       console.error(error)
@@ -74,7 +87,7 @@ export default class Recorder {
   }
 
   clear () {
-    this.bus.$emit('update', [])
+    this.emitUpdate([])
     Recorder.clearStatic()
   }
 
@@ -96,7 +109,7 @@ export default class Recorder {
         })
         uni.setStorageSync(REQUESTS_STORAGE_KEY, records)
         uni.setStorageSync(RESPONSES_STORAGE_KEY, allResponse)
-        this.bus.$emit('update', records)
+        this.emitUpdate(records)
       }
     } catch (error) {
       console.log('error', error)

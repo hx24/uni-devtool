@@ -73,9 +73,9 @@ export default {
     }
   },
   created () {
-    this.$recorder.bus.$on('update', (records) => {
-      this.records = records
-    })
+    const onUpdate = (records) => this.records = records
+    this.$recorder.onUpdate(onUpdate)
+    this.$once('hook:beforeDestroy', () => this.$recorder.offUpdate(onUpdate))
   },
   methods: {
     handleDelete () {

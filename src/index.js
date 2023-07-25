@@ -15,6 +15,6 @@ module.exports = function (source) {
 
   // pages.json添加H5Webview路由，用于跳转到H5页面
   source = addH5Webview(source, resourcePath, options)
- 
+
   return source
 }
